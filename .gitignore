@@ -1,0 +1,5 @@
+.vscode
+build
+core-*
+gcp-*
+/Water Meter.zip

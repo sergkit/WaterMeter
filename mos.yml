@@ -1,0 +1,50 @@
+# arch: PLATFORM
+version: 1.3
+manifest_version: 2017-05-18
+author: mongoose-os
+description: Watermeter application
+
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+config_schema:
+  - ["app", "o", {title: "Application specific configuration"}]
+  - ["app.startPin", "i", 12, {title: "next 3 pin used for inputs"}] 
+  - ["app.countPin", "i", 3, {title: "next 3 pin used for inputs"}]
+  - ["app.updateTimer", "i", 5000, {title: "updateinterval"}]
+  - ["app.statusTimer", "i", 180000, {title: "status update interval"}]
+  - ["app.filterPin", "i", 14, {title: "pin for connecting filter"}] 
+  - ["app.filterDivider", "i", 5, {title: "counter to liter transform"}] 
+  - ["app.filterSize", "i", 10, {title: "standart bottle value"}] 
+  - ["app.pickPin", "i", 4, {title: "pwm out"}] 
+  - ["app.pickFreq", "i", 2000, {title: "pwm freq"}]
+  - ["app.pickToggle", "i", 500, {title: "on/off pwm interval"}]
+  - ["app.connectPin", "i", 2, {title: "connect led pin"}]
+filesystem:
+  - fs
+sources:
+  - src
+libs:
+  - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/ca-bundle
+  - origin: https://github.com/mongoose-os-libs/dash
+  - origin: https://github.com/mongoose-os-libs/http-server
+  - origin: https://github.com/mongoose-os-libs/rpc-loopback
+#  - origin: https://github.com/mongoose-os-libs/rpc-mqtt
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/rpc-service-fs
+#  - origin: https://github.com/mongoose-os-libs/rpc-service-gpio
+#  - origin: https://github.com/mongoose-os-libs/rpc-service-i2c
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
+  - origin: https://github.com/mongoose-os-libs/rpc-ws
+  - origin: https://github.com/mongoose-os-libs/pwm
+  - origin: https://github.com/mongoose-os-libs/wifi
+  - origin: https://github.com/mongoose-os-libs/shadow
+  - origin: https://github.com/mongoose-os-libs/mqtt
+  - origin: https://github.com/mongoose-os-libs/gcp
+  - origin: https://github.com/mongoose-os-libs/ota-shadow
+  - origin: https://github.com/mongoose-os-libs/mjs
+  - origin: https://github.com/mongoose-os-libs/rpc-service-ota
+
+tags:
+  - c

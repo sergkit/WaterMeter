@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Water Meter</string>
+    <string name="last_month">Прошлый месяц</string>
+    <string name="current">Текущие показания</string>
+    <string name="hot_water">Горячая вода</string>
+    <string name="cold_water">Холодная вода</string>
+    <string name="tarif">Тарифы</string>
+    <string name="calc">Считать</string>
+    <string name="filter">Фильтр</string>
+    <string name="change">Изменить</string>
+    <string name="save">Сохранить</string>
+    <string name="rash">Расход</string>
+    <string name="otved">Отведение</string>
+    <string name="action_settings">Настройка</string>
+    <!-- Key name for storing size in SharedPreferences -->
+    <string name="pref_device_key" translatable="false">dev_name</string>
+    <string name="device_name" >Имя устройства</string>
+    <string name="pref_device_name_default">WMETER_11A214</string>
+
+    <!-- Default for size preference -->
+    <string name="pref_cold_water" translatable="false">40.48</string>
+    <string name="pref_cold_water_key" translatable="false">et_cw</string>
+    <string name="pref_hot_water" translatable="false">198.19</string>
+    <string name="pref_hot_water_key" translatable="false">et_hw</string>
+    <string name="pref_otv_water" translatable="false">40.48</string>
+    <string name="pref_otv_water_key" translatable="false">et_otv</string>
+    <string name="pref_size_key" translatable="false">14</string>
+</resources>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+    <EditTextPreference
+        app:defaultValue="@string/pref_device_name_default"
+        app:key="@string/pref_device_key"
+        app:useSimpleSummaryProvider="true"
+        app:title="@string/device_name"/>
+    <EditTextPreference
+        app:defaultValue="@string/pref_cold_water"
+        app:key="@string/pref_cold_water_key"
+        app:useSimpleSummaryProvider="true"
+        app:title="@string/cold_water"/>
+    <EditTextPreference
+        app:defaultValue="@string/pref_hot_water"
+        app:key="@string/pref_hot_water_key"
+        app:useSimpleSummaryProvider="true"
+        app:title="@string/hot_water"/>
+    <EditTextPreference
+        app:defaultValue="@string/pref_otv_water"
+        app:key="@string/pref_otv_water_key"
+        app:useSimpleSummaryProvider="true"
+        app:title="@string/otved"/>
+
+</PreferenceScreen>
