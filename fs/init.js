@@ -33,7 +33,7 @@ Event.addGroupHandler(Net.EVENT_GRP, function (ev, evdata, arg) {
         evs = 'CONNECTING';
     } else if (ev === Net.STATUS_CONNECTED) {
         evs = 'CONNECTED';
-        print("##################################");
+        print("####################### wifi.ap.enable");
         print(Cfg.get('wifi.ap.enable'));
     } else if (ev === Net.STATUS_GOT_IP && Cfg.get('wifi.ap.enable') === true) {
         evs = 'GOT_IP';

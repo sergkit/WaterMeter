@@ -1,5 +1,5 @@
 # arch: PLATFORM
-version: 1.3
+version: 1.5
 manifest_version: 2017-05-18
 author: mongoose-os
 description: Watermeter application
@@ -14,12 +14,13 @@ config_schema:
   - ["app.updateTimer", "i", 5000, {title: "updateinterval"}]
   - ["app.statusTimer", "i", 180000, {title: "status update interval"}]
   - ["app.filterPin", "i", 14, {title: "pin for connecting filter"}] 
-  - ["app.filterDivider", "i", 5, {title: "counter to liter transform"}] 
-  - ["app.filterSize", "i", 10, {title: "standart bottle value"}] 
+  - ["app.filterDivider", "i", 100, {title: "counter to liter transform"}] 
+  - ["app.filterSize", "i", 4000, {title: "standart bottle value"}] 
   - ["app.pickPin", "i", 4, {title: "pwm out"}] 
   - ["app.pickFreq", "i", 2000, {title: "pwm freq"}]
   - ["app.pickToggle", "i", 500, {title: "on/off pwm interval"}]
   - ["app.connectPin", "i", 2, {title: "connect led pin"}]
+  - ["app.debounce", "i", 100000, {title: "debounce value"}]
 filesystem:
   - fs
 sources:
@@ -42,6 +43,7 @@ libs:
   - origin: https://github.com/mongoose-os-libs/shadow
   - origin: https://github.com/mongoose-os-libs/mqtt
   - origin: https://github.com/mongoose-os-libs/gcp
+#  - origin: https://github.com/mongoose-os-libs/ota-common
   - origin: https://github.com/mongoose-os-libs/ota-shadow
   - origin: https://github.com/mongoose-os-libs/mjs
   - origin: https://github.com/mongoose-os-libs/rpc-service-ota
