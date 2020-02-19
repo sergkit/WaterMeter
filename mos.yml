@@ -1,5 +1,5 @@
 # arch: PLATFORM
-version: 1.5
+version: 2.0
 manifest_version: 2017-05-18
 author: mongoose-os
 description: Watermeter application
@@ -15,12 +15,15 @@ config_schema:
   - ["app.statusTimer", "i", 180000, {title: "status update interval"}]
   - ["app.filterPin", "i", 14, {title: "pin for connecting filter"}] 
   - ["app.filterDivider", "i", 100, {title: "counter to liter transform"}] 
-  - ["app.filterSize", "i", 4000, {title: "standart bottle value"}] 
+  - ["app.filterSize", "i", 5200, {title: "standart bottle value"}] 
   - ["app.pickPin", "i", 4, {title: "pwm out"}] 
   - ["app.pickFreq", "i", 2000, {title: "pwm freq"}]
   - ["app.pickToggle", "i", 500, {title: "on/off pwm interval"}]
   - ["app.connectPin", "i", 2, {title: "connect led pin"}]
+  - ["app.WDDonePin", "i", 5, {title: "watch dog done pin"}]
   - ["app.debounce", "i", 100000, {title: "debounce value"}]
+  - ["app.minram", "i", 25000, {title: "minimum ram size"}]
+  - ["sntp.update_interval", 12000]
 filesystem:
   - fs
 sources:

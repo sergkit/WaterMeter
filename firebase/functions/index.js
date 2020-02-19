@@ -143,6 +143,14 @@ function saveCounters(){
     return true;
   } 
 }
+// обработка событий registry
+exports.detectRegEvents = functions.pubsub.topic('registry-topic')
+  .onPublish((message, context) => {
+    const a = message.json.mem.toFixed();
+    const b = message.json.uptime.toFixed();
+    return db.ref(`reg/${deviceId}`).push({"t":context.timestamp,"m":a,"u":b});
+  });
+
 // обработка получения данных от контроллера
 exports.detectTelemetryEvents = functions.pubsub.topic('main-telemetry-topic')
   .onPublish((message, context) => {
