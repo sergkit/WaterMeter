@@ -39,7 +39,8 @@ exports.authgoogleapi = functions.https.onRequest((req, res) => {
 // очистка статистики
 exports.removestat = functions.https.onRequest(async(req, res) => {
   await db.ref("devices-telemetry/WMETER_11A214/stat").remove();
-  return res.status(200).send('Stat folder clear ');
+  await db.ref(`reg`).remove();
+  return res.status(200).send('Stat % reg folders clear ');
 });
 
 
@@ -128,6 +129,15 @@ function saveStat(){
       return true;
     }
 }
+//сохранение статистики
+function saveReg(s){
+  var stat=typeof config.stat==="undefined" ?1:config.stat;
+  if (stat==1 ){
+    return db.ref(`reg`).push(s);
+  }else{
+    return true;
+  }
+}
 // вычисление  и сохранение счетчиков
 function saveCounters(){
   if(saveData){
@@ -146,9 +156,16 @@ function saveCounters(){
 // обработка событий registry
 exports.detectRegEvents = functions.pubsub.topic('registry-topic')
   .onPublish((message, context) => {
+    const s={};
     const a = message.json.mem.toFixed();
     const b = message.json.uptime.toFixed();
-    return db.ref(`reg/${deviceId}`).push({"t":context.timestamp,"m":a,"u":b});
+    s={"t":context.timestamp,"m":a,"u":b};
+    return  Promise.all([
+      getConfig()
+  ])
+  .then(()=>{
+    return saveReg(s);
+  })
   });
 
 // обработка получения данных от контроллера

@@ -1,5 +1,5 @@
 # arch: PLATFORM
-version: 2.0
+version: 2.1
 manifest_version: 2017-05-18
 author: mongoose-os
 description: Watermeter application
@@ -18,7 +18,8 @@ config_schema:
   - ["app.filterSize", "i", 5200, {title: "standart bottle value"}] 
   - ["app.pickPin", "i", 4, {title: "pwm out"}] 
   - ["app.pickFreq", "i", 2000, {title: "pwm freq"}]
-  - ["app.pickToggle", "i", 500, {title: "on/off pwm interval"}]
+  - ["app.pickToggle", "i", 1000, {title: "on/off pwm interval"}]
+  - ["app.pickDivider", "i", 4, {title: "off/on pick ratio"}]
   - ["app.connectPin", "i", 2, {title: "connect led pin"}]
   - ["app.WDDonePin", "i", 5, {title: "watch dog done pin"}]
   - ["app.debounce", "i", 100000, {title: "debounce value"}]

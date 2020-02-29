@@ -37,9 +37,11 @@ volatile uint32_t i[5];
 //volatile int64_t t[5]; //время срабатывания кнопки
 volatile int lastFilter, curFilter;
 volatile bool changed = false, floatOn = false;
-bool connected = false, bottleFull = false, pick = false, sendReg=false, connectLed=true;
+bool connected = false, bottleFull = false, sendReg=false, connectLed=true, pick=false;
 int startPin, countPin, pickPin, pickFreq, pickToggle, filterPin, filterDivider, filterSize, connectPin, debounce,resetReason,wdPin;
 mgos_timer_id timerId;
+uint8_t pickCnt=0,pickDivider;
+
 
 // обработка фильтра
 IRAM static void filter_cb(int pin, void *arg)
@@ -81,7 +83,14 @@ static void wd_update()
 static void pick_timer(void *arg)
 {
   //LOG_(LL_INFO, ("pickTimer"));
-  pick = !pick;
+  if(pickCnt==(pickDivider-1) || pickCnt==pickDivider ){
+    pick = !pick;
+  }
+  pickCnt++;
+  if(pickCnt>pickDivider ){
+    pickCnt=0;
+  }
+  
   float on;
   if (pick)
   {
@@ -94,6 +103,8 @@ static void pick_timer(void *arg)
   if (!bottleFull)
   {
     on = 0;
+    pickCnt=0;
+    pick=false;
   }
   mgos_pwm_set(pickPin, pickFreq, on);
   (void)arg;
@@ -228,7 +239,9 @@ enum mgos_app_init_result mgos_app_init(void)
 
   pickPin = mgos_sys_config_get_app_pickPin();
   pickFreq = mgos_sys_config_get_app_pickFreq();
-  pickToggle = mgos_sys_config_get_app_pickToggle();
+  
+  pickDivider=mgos_sys_config_get_app_pickDivider();
+  pickToggle = (int)(mgos_sys_config_get_app_pickToggle()/mgos_sys_config_get_app_pickDivider());
   mgos_gpio_set_mode(pickPin, MGOS_GPIO_MODE_OUTPUT);
 
   connectPin = mgos_sys_config_get_app_connectPin();
