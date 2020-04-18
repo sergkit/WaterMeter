@@ -156,10 +156,12 @@ function saveCounters(){
 // обработка событий registry
 exports.detectRegEvents = functions.pubsub.topic('registry-topic')
   .onPublish((message, context) => {
-    const s={};
     const a = message.json.mem.toFixed();
     const b = message.json.uptime.toFixed();
-    s={"t":context.timestamp,"m":a,"u":b};
+    const t=context.timestamp
+    const s={t:t,m:a,u:b};
+    deviceId = message.attributes.deviceId;
+    ref = db.ref(`devices-telemetry/${deviceId}`);
     return  Promise.all([
       getConfig()
   ])
@@ -228,6 +230,7 @@ function checkEmail(){
     if (month==12){
       month=0;
     }
+    console.log(`emailStart`);
     var year=dt.getFullYear();
     db.ref(`devices-telemetry/${deviceId}/config/m`).set(month);
     db.ref(`devices-telemetry/${deviceId}/config/y`).set(year);
