@@ -263,7 +263,7 @@ enum mgos_app_init_result mgos_app_init(void)
       mgos_gpio_set_int_handler_isr(j, btn_int_edge, filter_cb, NULL);
     }else{
       // обычное прерывание  с подавлением  дребезга
-      mgos_gpio_set_button_handler(j, btn_pull, btn_int_edge, 20, counter_cb, NULL);
+      mgos_gpio_set_button_handler(j, btn_pull, btn_int_edge, debounce, counter_cb, NULL);
     }
     
     intr = mgos_gpio_enable_int(j);
