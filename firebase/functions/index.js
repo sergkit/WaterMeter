@@ -83,7 +83,7 @@ function getLast() {
       console.log("last", snapshot.toJSON());
       ss = 0;
       if (snapshot.toJSON().t < data.t) {
-        const maxInc = { a: 3, b: 3, c: 500, d: 0, f: 0 };// максимальный прирос показаний, на случай если порядок сообщений будет нарушен
+        const maxInc = { a: 5, b: 5, c: 500, d: 0, f: 0 };// максимальный прирос показаний, на случай если порядок сообщений будет нарушен
         snapshot.forEach((child) => {
           const v = child.val();
           if (child.key != "t") {
