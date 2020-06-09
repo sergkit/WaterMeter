@@ -93,7 +93,7 @@ function getLast() {
               data[child.key] = 0;
             } else if (data[child.key] > v1) {
               data[child.key] = data[child.key] - v1;
-            } else if (data[child.key] < v1 && data[child.key] < maxIncх[child.key]) {
+            } else if (data[child.key] < v1 && data[child.key] > maxInc[child.key]) {
               data[child.key] = 0;
             }
             ss += data[child.key];
